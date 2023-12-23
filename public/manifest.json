@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "mdmemo",
+  "description": "Markdown Memo",
+  "version": "1.0",
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "../dist/html.html"
+  }
+}
