@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 
-type MemoState = {
+export type MemoState = {
   name: string;
-  contents: string;
-}[];
+  onClick: (arg?: any) => Promise<void>;
+};
 
 export const memo = atom<Array<MemoState>>([]);
 
