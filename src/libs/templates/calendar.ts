@@ -67,6 +67,19 @@ export const generateCalendar = async (date: Date = new Date()) => {
   await navigator.clipboard.writeText(HEADER + baseMarkup);
 }
 
+// FIXME:
+// generateCalendarを直接buttonのonClickから呼ぶとエラーになる
+// ここでラップすると動くから暫定処理
+export const call = async () => {
+  try {
+    await generateCalendar();
+    return;
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+}
+
 /**
  * 月初(1日)の曜日を調べる
  * 
