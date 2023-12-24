@@ -1,19 +1,50 @@
-import { MemoState } from "../../state/atoms/memo";
-import {
-  call,
-  // generateCalendar
- } from "./calendar";
-import { generateDetail } from "./detail";
-
-export const generateDefaultTemplates = (): MemoState[] => {
-  return [
-    {
-      name: "calendar",
-      onClick: call
-    },
-    {
-      name: "detail",
-      onClick: generateDetail
+/**
+ * get memos from Local Storage
+ * 
+ * @returns 
+ */
+const getMemoFromStorage = async(): Promise<Array<{name: string; content: string;}>> => {
+  try {
+    const data = await chrome.storage.local.get(["mdmemo"]);
+    if (Array.isArray(data.mdmemo)) {
+      return data.mdmemo;
     }
-  ];
+    return [];
+  } catch (e) {
+    return [];
+  }
+}
+
+export const wrapperGetMemo = async () => {
+  try {
+    const data = await getMemoFromStorage();
+    return data.map((item: {name: string; content: string}) => {
+      return {
+        name: item.name,
+        onClick: async () => {
+          console.error("ON CLICKED");
+          await navigator.clipboard.writeText(item.content);
+        }
+      };
+    });
+  } catch (e) {
+    console.error("wrapperERROR: " + e);
+    return [];
+  }
+}
+
+/**
+ * set new memo in Local Storage
+ * 
+ * @param memo 
+ */
+export const setMemoToLocalStorage = async(input: {name: string; content: string}) => {
+  try {
+    const currentMemos = await getMemoFromStorage();
+    currentMemos.push(input);
+    await chrome.storage.local.set({ mdmemo: currentMemos });
+    console.error(JSON.stringify(await getMemoFromStorage()));
+  } catch (e) {
+    console.error(`setMemoToLocalStorage: ${e}`);
+  }
 }

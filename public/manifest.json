@@ -10,5 +10,8 @@
   "action": {
     "default_title": "Click to view a popup",
     "default_popup": "index.html"
-  }
+  },
+  "permissions": [
+    "storage"
+  ]
 }
