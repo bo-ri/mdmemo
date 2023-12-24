@@ -46,3 +46,13 @@ export const setMemoToLocalStorage = async(input: {name: string; content: string
     console.error(e);
   }
 }
+
+export const deleteMemoFromStorage = async(index: number) => {
+  try {
+    const currentMemos = await getMemoFromStorage();
+    currentMemos.splice(index, 1);
+    await chrome.storage.local.set({ mdmemo: currentMemos });
+  } catch (e) {
+    console.error(e);
+  }
+}
