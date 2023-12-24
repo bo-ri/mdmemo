@@ -22,13 +22,12 @@ export const wrapperGetMemo = async () => {
       return {
         name: item.name,
         onClick: async () => {
-          console.error("ON CLICKED");
           await navigator.clipboard.writeText(item.content);
         }
       };
     });
   } catch (e) {
-    console.error("wrapperERROR: " + e);
+    console.error(e);
     return [];
   }
 }
@@ -43,8 +42,7 @@ export const setMemoToLocalStorage = async(input: {name: string; content: string
     const currentMemos = await getMemoFromStorage();
     currentMemos.push(input);
     await chrome.storage.local.set({ mdmemo: currentMemos });
-    console.error(JSON.stringify(await getMemoFromStorage()));
   } catch (e) {
-    console.error(`setMemoToLocalStorage: ${e}`);
+    console.error(e);
   }
 }

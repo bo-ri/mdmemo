@@ -32,6 +32,9 @@ export const Form = () => {
       return;
     }
   }
+  const handleOnClickCancel = () => {
+    setDisplaySettings("list");
+  }
   return (
     <>
       <div>
@@ -54,6 +57,9 @@ export const Form = () => {
         <button
           onClick={handleOnClickRegister}
         >register</button>
+        <button
+          onClick={handleOnClickCancel}
+        >cancel</button>
       </div>
     </>
   )
