@@ -16,7 +16,7 @@ export const getMemo = atom((get) => get(memo));
  * add new memo
  */
 export const addMemo = atom(
-  (get) => get(memo),
+  null,
   (get, set, update: MemoState) => {
     const currentMemo = get(memo);
     currentMemo.push(update);
@@ -27,8 +27,11 @@ export const addMemo = atom(
 /**
  * delete memo
  */
-export const deleteMemo = atom(null, (get, set, update: number) => {
-  const currentMemo = get(memo);
-  currentMemo.splice(update, 1);
-  set(memo, currentMemo);
-});
+export const deleteMemo = atom(
+  null,
+  (get, set, update: number) => {
+    const currentMemo = get(memo);
+    currentMemo.splice(update, 1);
+    set(memo, currentMemo);
+  }
+);
