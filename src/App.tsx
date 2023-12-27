@@ -3,6 +3,7 @@ import { display } from "./state/atoms/display";
 import { List } from "./pages/List";
 import { Form } from "./pages/Form";
 import { getMemo } from "./state/atoms/memo";
+import { Update } from "./pages/Update";
 
 export const App = () => {
   const [displaySettings] = useAtom(display);
@@ -12,7 +13,9 @@ export const App = () => {
       {
         displaySettings.status === "form"
           ? <Form />
-          : <List memoList={memoList} />
+          : displaySettings.status === "update" && displaySettings.selectedIndex
+            ? <Update index={displaySettings.selectedIndex} />
+            : <List memoList={memoList} />
       }
     </>
   )

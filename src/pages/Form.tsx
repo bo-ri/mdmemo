@@ -30,6 +30,7 @@ export const Form = () => {
       await setMemoToLocalStorage(inputState);
       setMemo({
         name: inputState.name,
+        content: inputState.content,
         onClick: async () => {
           await navigator.clipboard.writeText(inputState.content);
         }

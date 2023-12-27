@@ -2,6 +2,7 @@ import { atom } from "jotai";
 
 export type MemoState = {
   name: string;
+  content: string;
   onClick?: (arg?: any) => Promise<void>;
 };
 
@@ -23,6 +24,13 @@ export const addMemo = atom(
     set(memo, currentMemo);
   }
 );
+
+export const updateMemo = atom(
+  null,
+  (_, set, update: MemoState[]) => {
+    set(memo, update);
+  }
+)
 
 /**
  * delete memo

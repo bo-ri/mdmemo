@@ -1,10 +1,9 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { display } from "../state/atoms/display";
 import { generateCalendar } from "../libs/templates/calendar";
 import { generateDetail } from "../libs/templates/detail";
-import { MemoState, deleteMemo as deleteMemoState } from "../state/atoms/memo";
-import { deleteMemoFromStorage } from "../libs/templates/utils";
+import { MemoState } from "../state/atoms/memo";
 import "./styles.css";
 
 export const List = ({
@@ -14,7 +13,6 @@ export const List = ({
 }) => {
   const [selectedDate, setDate] = useState("");
   const [displaySettings, setDisplaySettings] = useAtom(display);
-  const deleteMemo = useSetAtom(deleteMemoState);
   useEffect(() => {
     const today = new Date();
     today.setDate(today.getDate());
@@ -34,13 +32,12 @@ export const List = ({
       status: "form"
     });
   }
-  const handleOnClickDelete = async(index: number) => {
-    try {
-      await deleteMemoFromStorage(index);
-      deleteMemo(index);
-    } catch (e) {
-      console.error(e);
-    }
+  const handleOnClickUpdate = (index: number) => {
+    setDisplaySettings({
+      ...displaySettings,
+      status: "update",
+      selectedIndex: index,
+    });
   }
 
   const customMaps = useMemo(() => {
@@ -52,7 +49,7 @@ export const List = ({
             <button onClick={item.onClick}>copy</button>
           </td>
           <td>
-            <button onClick={() => handleOnClickDelete(index)} >delete</button>
+            <button onClick={() => handleOnClickUpdate(index + 1)} >update</button>
           </td>
         </tr>
       );

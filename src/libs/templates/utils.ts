@@ -1,3 +1,5 @@
+import { MemoState } from "../../state/atoms/memo";
+
 /**
  * get memos from Local Storage
  * 
@@ -21,6 +23,7 @@ export const wrapperGetMemo = async () => {
     return data.map((item: {name: string; content: string}) => {
       return {
         name: item.name,
+        content: item.content,
         onClick: async () => {
           await navigator.clipboard.writeText(item.content);
         }
@@ -42,6 +45,14 @@ export const setMemoToLocalStorage = async(input: {name: string; content: string
     const currentMemos = await getMemoFromStorage();
     currentMemos.push(input);
     await chrome.storage.local.set({ mdmemo: currentMemos });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export const updateMemoToLocalStorage = async(target: MemoState[]) => {
+  try {
+    await chrome.storage.local.set({ mdmemo: target });
   } catch (e) {
     console.error(e);
   }
