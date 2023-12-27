@@ -3,14 +3,17 @@ import { useAtom, useSetAtom } from "jotai";
 import { display } from "../state/atoms/display";
 import { generateCalendar } from "../libs/templates/calendar";
 import { generateDetail } from "../libs/templates/detail";
-import { deleteMemo as deleteMemoState, getMemo } from "../state/atoms/memo";
-import "./styles.css";
+import { MemoState, deleteMemo as deleteMemoState } from "../state/atoms/memo";
 import { deleteMemoFromStorage } from "../libs/templates/utils";
+import "./styles.css";
 
-export const List = () => {
+export const List = ({
+  memoList
+}: {
+  memoList: MemoState[]
+}) => {
   const [selectedDate, setDate] = useState("");
   const [displaySettings, setDisplaySettings] = useAtom(display);
-  const [memoList] = useAtom(getMemo);
   const deleteMemo = useSetAtom(deleteMemoState);
   useEffect(() => {
     const today = new Date();

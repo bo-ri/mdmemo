@@ -2,9 +2,10 @@ import { useState } from "react"
 import { useSetAtom } from "jotai";
 import { setDisplayStatus } from "../state/atoms/display";
 import { setMemoToLocalStorage } from "../libs/templates/utils";
+import { addMemo } from "../state/atoms/memo";
 
 export const Form = () => {
-  // const setMemo = useSetAtom(addMemo);
+  const setMemo = useSetAtom(addMemo);
   const setDisplaySettings = useSetAtom(setDisplayStatus);
   const [inputState, setInputState] = useState({
     name: "",
@@ -27,6 +28,12 @@ export const Form = () => {
   const handleOnClickRegister = async() => {
     try {
       await setMemoToLocalStorage(inputState);
+      setMemo({
+        name: inputState.name,
+        onClick: async () => {
+          await navigator.clipboard.writeText(inputState.content);
+        }
+      })
       setDisplaySettings("list");
     } catch (e) {
       return;
