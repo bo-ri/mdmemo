@@ -13,8 +13,15 @@ export const Update = ({
   const updateMemos = useSetAtom(updateMemo)
   const [formData, setFormData] = useState(memoList[index - 1]);
   const setDisplaySettings = useSetAtom(display);
+  const [isInputTitle, setIsInputTitle] = useState(false);
+  const [isInputContet, setIsInputContet] = useState(false);
 
   const handleOnChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > 0) {
+      setIsInputTitle(false);
+    } else {
+      setIsInputTitle(true);
+    }
     setFormData({
       ...formData,
       name: e.target.value
@@ -22,6 +29,11 @@ export const Update = ({
   }
 
   const handleOnChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value.length > 0) {
+      setIsInputContet(false);
+    } else {
+      setIsInputContet(true);
+    }
     setFormData({
       ...formData,
       content: e.target.value
@@ -92,7 +104,10 @@ export const Update = ({
         ></textarea>
       </div>
       <div>
-        <button onClick={handleOnClickUpdate}>update</button>
+        <button
+          onClick={handleOnClickUpdate}
+          disabled={isInputTitle || isInputContet}
+        >update</button>
         <button onClick={handleOnClickDelete}>delete</button>
         <button onClick={handleOnClickCancel}>cancel</button>
       </div>

@@ -11,7 +11,14 @@ export const Form = () => {
     name: "",
     content: "",
   })
+  const [isInputTitle, setIsInputTitle] = useState(true);
+  const [isInputContet, setIsInputContet] = useState(true);
   const handleOnChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > 0) {
+      setIsInputTitle(false);
+    } else {
+      setIsInputTitle(true);
+    }
     const name = e.target.value;
     setInputState({
       ...inputState,
@@ -20,6 +27,11 @@ export const Form = () => {
   }
   const handleOnChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const content = e.target.value;
+    if (content.length > 0) {
+      setIsInputContet(false);
+    } else {
+      setIsInputContet(true);
+    }
     setInputState({
       ...inputState,
       content
@@ -64,6 +76,7 @@ export const Form = () => {
       <div>
         <button
           onClick={handleOnClickRegister}
+          disabled={isInputTitle || isInputContet}
         >register</button>
         <button
           onClick={handleOnClickCancel}
