@@ -17,6 +17,10 @@
   z-index: 1;
 }
 
+#main_table th {
+  padding-left: 10px;
+}
+
 #main_table tbody tr {
   border-bottom: 1px solid #dddddd;
   height: 40px;

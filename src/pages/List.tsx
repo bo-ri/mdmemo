@@ -4,7 +4,7 @@ import { display } from "../state/atoms/display";
 import { generateCalendar } from "../libs/templates/calendar";
 import { generateDetail } from "../libs/templates/detail";
 import { MemoState } from "../state/atoms/memo";
-import "./styles.css";
+import "./List.css";
 
 export const List = ({
   memoList
@@ -60,7 +60,7 @@ export const List = ({
     <>
       <div id="box">
         <table id="main_table">
-          <thead><tr><th>name</th><th>params</th><th>action</th></tr></thead>
+          <thead><tr><th>name</th><th>params</th><th>action</th><th>option</th></tr></thead>
           <tbody>
             <tr>
               <th>calendar</th>
@@ -71,10 +71,10 @@ export const List = ({
                 <button onClick={handleOnClick}>copy</button>
               </td>
               <td>
-                <button disabled>delete</button>
+                <button disabled>update</button>
               </td>
             </tr>
-            <tr><th>detail</th><td>---</td><td><button onClick={generateDetail}>copy</button></td><td><button disabled>delete</button></td></tr>
+            <tr><th>detail</th><td>---</td><td><button onClick={generateDetail}>copy</button></td><td><button disabled>update</button></td></tr>
             { customMaps }
           </tbody>
         </table>
