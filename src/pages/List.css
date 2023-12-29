@@ -29,3 +29,22 @@
 #main_table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
+
+.ListButton {
+  margin-top: 3px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.ListButton button {
+  width: 60%;
+  border-color: #10967b;
+  border-radius: 3px;
+  background-color: white;
+  font-weight: 600;
+}
+
+.ListButton button span {
+  color: #10967b;
+}

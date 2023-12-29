@@ -89,7 +89,9 @@ export const List = ({
             { customMaps }
           </tbody>
         </table>
-        <button onClick={handleOnClickAdd}>+</button>
+        <div className="ListButton">
+          <button onClick={handleOnClickAdd}><span>+</span></button>
+        </div>
       </div>
     </>
   )
