@@ -26,6 +26,9 @@ export const wrapperGetMemo = async () => {
         content: item.content,
         onClick: async () => {
           await navigator.clipboard.writeText(item.content);
+          setTimeout(() => {
+            window.close();
+          }, 100);
         }
       };
     });

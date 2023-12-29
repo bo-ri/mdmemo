@@ -25,7 +25,18 @@ export const List = ({
   }
   const handleOnClick = async() => {
     await generateCalendar(new Date(selectedDate));
+    setTimeout(() => {
+      window.close();
+    }, 100);
   }
+
+  const handleOnClickGenerateDetail = () => {
+    generateDetail();
+    setTimeout(() => {
+      window.close();
+    }, 100);
+  }
+
   const handleOnClickAdd = () => {
     setDisplaySettings({
       ...displaySettings,
@@ -74,7 +85,7 @@ export const List = ({
                 <button disabled>update</button>
               </td>
             </tr>
-            <tr><th>detail</th><td>---</td><td><button onClick={generateDetail}>copy</button></td><td><button disabled>update</button></td></tr>
+            <tr><th>detail</th><td>---</td><td><button onClick={handleOnClickGenerateDetail}>copy</button></td><td><button disabled>update</button></td></tr>
             { customMaps }
           </tbody>
         </table>
