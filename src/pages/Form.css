@@ -1,0 +1,73 @@
+.FormNameInput, .FormContentInput, .FormButtonContainer {
+  margin-left: 5px;
+}
+
+input:focus {
+  background-color: rgb(209, 236, 230);
+}
+
+textarea:focus {
+  background-color: rgb(209, 236, 230);
+}
+
+.FormNameInput {
+  margin-bottom: 10px;;
+}
+
+.FormNameInput div {
+  margin-bottom: 2px;
+}
+
+.FormNameInput input {
+  border-radius: 3px;
+  border: 1px solid #10967b;
+  width: 80%;
+}
+
+.FormContentInput div {
+  margin-bottom: 2px;
+}
+
+.FormContentInput textarea {
+  border-radius: 3px;
+  border: 1px solid #10967b;
+  width: 80%
+}
+
+.FormHorizontalDiv hr {
+  width: 95%;
+  height: 1px;
+  background-color: rgba(147, 147, 147, 0.6);
+  border: none;
+}
+
+.FormButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+.FormRegisterButton {
+  width: 40%;
+  border: 1px solid #10967b;
+  border-radius: 3px;
+  background-color: white;
+  font-weight: 600;
+}
+
+.FormRegisterButton span {
+  color: #10967b;
+}
+
+.FormCancelButton {
+  width: 40%;
+  border: 1px solid #787676;
+  border-radius: 3px;
+  background-color: white;
+  font-weight: 600;
+}
+
+.FormCancelButton span {
+  color: #787676;
+}

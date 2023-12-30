@@ -39,7 +39,7 @@
 
 .ListButton button {
   width: 60%;
-  border-color: #10967b;
+  border: 1px solid #10967b;
   border-radius: 3px;
   background-color: white;
   font-weight: 600;

@@ -3,6 +3,7 @@ import { useSetAtom } from "jotai";
 import { setDisplayStatus } from "../state/atoms/display";
 import { setMemoToLocalStorage } from "../libs/templates/utils";
 import { addMemo } from "../state/atoms/memo";
+import "./Form.css";
 
 export const Form = () => {
   const setMemo = useSetAtom(addMemo);
@@ -56,8 +57,9 @@ export const Form = () => {
     setDisplaySettings("list");
   }
   return (
-    <>
-      <div>
+    <div className="FormContainer">
+      <div className="FormNameInput">
+        <div><label>name</label></div>
         <input
           type="text"
           placeholder="title..."
@@ -65,7 +67,8 @@ export const Form = () => {
           required
         />
       </div>
-      <div>
+      <div className="FormContentInput">
+        <div><label>memo</label></div>
         <textarea
           rows={5}
           placeholder="markdown here..."
@@ -73,15 +76,20 @@ export const Form = () => {
           required
         ></textarea>
       </div>
-      <div>
+      <div className="FormHorizontalDiv">
+        <hr />
+      </div>
+      <div className="FormButtonContainer">
         <button
+            className="FormCancelButton"
+            onClick={handleOnClickCancel}
+          >cancel</button>
+        <button
+          className="FormRegisterButton"
           onClick={handleOnClickRegister}
           disabled={isInputTitle || isInputContet}
-        >register</button>
-        <button
-          onClick={handleOnClickCancel}
-        >cancel</button>
+        ><span>register</span></button>
       </div>
-    </>
+    </div>
   )
 }
