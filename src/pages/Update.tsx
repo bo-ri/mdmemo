@@ -3,6 +3,7 @@ import { memo, updateMemo } from "../state/atoms/memo";
 import { useState } from "react";
 import { display } from "../state/atoms/display";
 import { updateMemoToLocalStorage } from "../libs/templates/utils";
+import "./Update.css";
 
 export const Update = ({
   index
@@ -78,6 +79,8 @@ export const Update = ({
     }
   }
 
+  console.log(handleOnClickDelete);
+
   const handleOnClickCancel = () => {
     setDisplaySettings({
       status: "list",
@@ -87,7 +90,8 @@ export const Update = ({
 
   return(
     <>
-      <div>
+      <div className="UpdateNameInput">
+        <div><label>name</label></div>
         <input
           type="text"
           value={formData.name}
@@ -95,7 +99,8 @@ export const Update = ({
           required
         />
       </div>
-      <div>
+      <div className="UpdateContentInput">
+        <div><label>memo</label></div>
         <textarea
           rows={5}
           value={formData.content}
@@ -103,13 +108,20 @@ export const Update = ({
           required
         ></textarea>
       </div>
-      <div>
+      <div className="UpdateHorizontalDiv">
+        <hr />
+      </div>
+      <div className="UpdateButtonContainer">
+        <button
+          onClick={handleOnClickDelete}
+          className="UpdateDeleteButton"
+        ><img src="/delete.png" className="UpdateDeleteImg" /></button>
+        <button onClick={handleOnClickCancel} className="UpdateCancelButton">cancel</button>
         <button
           onClick={handleOnClickUpdate}
           disabled={isInputTitle || isInputContet}
+          className="UpdateRegisterButton"
         >update</button>
-        <button onClick={handleOnClickDelete}>delete</button>
-        <button onClick={handleOnClickCancel}>cancel</button>
       </div>
     </>
   );

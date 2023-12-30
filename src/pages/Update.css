@@ -1,0 +1,85 @@
+.UpdateNameInput, .UpdateContentInput, .UpdateButtonContainer {
+  margin-left: 5px;
+}
+
+input:focus {
+  background-color: rgb(209, 236, 230);
+}
+
+textarea:focus {
+  background-color: rgb(209, 236, 230);
+}
+
+.UpdateNameInput {
+  margin-bottom: 10px;;
+}
+
+.UpdateNameInput div {
+  margin-bottom: 2px;
+}
+
+.UpdateNameInput input {
+  border-radius: 3px;
+  border: 1px solid #10967b;
+  width: 80%;
+}
+
+.UpdateContentInput div {
+  margin-bottom: 2px;
+}
+
+.UpdateContentInput textarea {
+  border-radius: 3px;
+  border: 1px solid #10967b;
+  width: 80%
+}
+
+.UpdateHorizontalDiv hr {
+  width: 95%;
+  height: 1px;
+  background-color: rgba(147, 147, 147, 0.6);
+  border: none;
+}
+
+.UpdateButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+.UpdateRegisterButton {
+  width: 40%;
+  border: 1px solid #10967b;
+  border-radius: 3px;
+  background-color: white;
+  font-weight: 600;
+}
+
+.UpdateRegisterButton span {
+  color: #10967b;
+}
+
+.UpdateCancelButton {
+  width: 40%;
+  border: 1px solid #787676;
+  border-radius: 3px;
+  background-color: white;
+  font-weight: 600;
+}
+
+.UpdateCancelButton span {
+  color: #787676;
+}
+
+.UpdateDeleteButton {
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.UpdateDeleteImg {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+}
