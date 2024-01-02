@@ -7,7 +7,11 @@
  * | ...
  */
 
-const HEADER = `| 月 | 火 | 水 | 木 | 金 | 土 | 日 |
+const saturday = (input: number | string) => `<span style="color: #00B3CC">${input}</span>`;
+
+const sunday = (input: number | string) => `<span style="color: #FF7166">${input}</span>`;
+
+const HEADER = `| 月 | 火 | 水 | 木 | 金 | ${saturday("土")} | ${sunday("日")} |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 `;
 
@@ -53,11 +57,17 @@ export const generateCalendar = async (date: Date = new Date()) => {
     if ((i + 1) % 7 === 0) {
       // 最終日が日曜の場合は改行せずに閉じる
       if (dateIndex === endDate.getDate()) {
-        baseMarkup += `|${dateIndex}|`;
+        baseMarkup += `|${sunday(dateIndex)}|`;
         break;
       }
-      baseMarkup += `|${dateIndex}|\n`;
+      baseMarkup += `|${sunday(dateIndex)}|\n`;
     } else {
+      // 土曜日の場合は色を変える
+      if ((i + 2) % 7 === 0) {
+        baseMarkup += `|${saturday(dateIndex)}`
+        dateIndex++;
+        continue;
+      }
       // その他の場合は単純に日付を挿入する
       baseMarkup += `|${dateIndex}`;
     }
