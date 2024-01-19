@@ -26,7 +26,8 @@ export const generateCalendar = async (date: Date = new Date()) => {
 
   // 月末最終日を取得する
   const endDate = new Date();
-  endDate.setMonth(endDate.getMonth() + 1, 0);
+  endDate.setMonth(date.getMonth() + 1, 0);
+
 
   // 最大で6週分のrowが必要だから、6 * 7
   const MAXIMUM_DATE_COLUMNS = 42;
@@ -92,6 +93,10 @@ export const call = async () => {
 
 /**
  * 月初(1日)の曜日を調べる
+ * 月曜日 ... 0
+ * 火曜日 ... 1
+ * 水曜日 ... 2
+ * ...  
  * 
  * @param date 
  */
