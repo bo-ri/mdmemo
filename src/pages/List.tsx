@@ -24,7 +24,8 @@ export const List = ({
     setDate(e.target.value);
   }
   const handleOnClick = async() => {
-    await generateCalendar(new Date(selectedDate));
+    const [y, m] = selectedDate.split("-");
+    await generateCalendar(new Date(`${y}-${m}-01`));
     setTimeout(() => {
       window.close();
     }, 100);
