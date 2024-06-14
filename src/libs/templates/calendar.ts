@@ -25,7 +25,7 @@ export const generateCalendar = async (date: Date = new Date()) => {
   const firstDay = getFirstDayOfMonth(date);
 
   // 月末最終日を取得する
-  const endDate = new Date();
+  const endDate = new Date(date.toISOString());
   endDate.setMonth(date.getMonth() + 1, 0);
 
 
