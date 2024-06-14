@@ -1,4 +1,6 @@
-.FormNameInput, .FormContentInput, .FormButtonContainer {
+.FormNameInput,
+.FormContentInput,
+.FormButtonContainer {
   margin-left: 5px;
 }
 
@@ -11,7 +13,7 @@ textarea:focus {
 }
 
 .FormNameInput {
-  margin-bottom: 10px;;
+  margin-bottom: 10px;
 }
 
 .FormNameInput div {
@@ -31,7 +33,7 @@ textarea:focus {
 .FormContentInput textarea {
   border-radius: 3px;
   border: 1px solid #10967b;
-  width: 80%
+  width: 80%;
 }
 
 .FormHorizontalDiv hr {

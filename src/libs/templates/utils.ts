@@ -9,6 +9,7 @@ const getMemoFromStorage = async (): Promise<
   Array<{ name: string; content: string }>
 > => {
   try {
+    // @ts-ignore
     const data = await chrome.storage.local.get(['mdmemo']);
     if (Array.isArray(data.mdmemo)) {
       return data.mdmemo;
@@ -52,6 +53,7 @@ export const setMemoToLocalStorage = async (input: {
   try {
     const currentMemos = await getMemoFromStorage();
     currentMemos.push(input);
+    // @ts-ignore
     await chrome.storage.local.set({ mdmemo: currentMemos });
   } catch (e) {
     console.error(e);
@@ -60,6 +62,7 @@ export const setMemoToLocalStorage = async (input: {
 
 export const updateMemoToLocalStorage = async (target: MemoState[]) => {
   try {
+    // @ts-ignore
     await chrome.storage.local.set({ mdmemo: target });
   } catch (e) {
     console.error(e);
@@ -70,6 +73,7 @@ export const deleteMemoFromStorage = async (index: number) => {
   try {
     const currentMemos = await getMemoFromStorage();
     currentMemos.splice(index, 1);
+    // @ts-ignore
     await chrome.storage.local.set({ mdmemo: currentMemos });
   } catch (e) {
     console.error(e);

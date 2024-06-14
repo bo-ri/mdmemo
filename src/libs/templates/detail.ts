@@ -5,4 +5,4 @@ export const generateDetail = async () => {
   <!-- ここにテキスト(上の空行は消さない) -->
   </details>`;
   await navigator.clipboard.writeText(DETAIL_MARKDOWN);
-}
+};

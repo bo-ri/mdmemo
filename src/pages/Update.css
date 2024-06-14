@@ -1,4 +1,6 @@
-.UpdateNameInput, .UpdateContentInput, .UpdateButtonContainer {
+.UpdateNameInput,
+.UpdateContentInput,
+.UpdateButtonContainer {
   margin-left: 5px;
 }
 
@@ -11,7 +13,7 @@ textarea:focus {
 }
 
 .UpdateNameInput {
-  margin-bottom: 10px;;
+  margin-bottom: 10px;
 }
 
 .UpdateNameInput div {
@@ -31,7 +33,7 @@ textarea:focus {
 .UpdateContentInput textarea {
   border-radius: 3px;
   border: 1px solid #10967b;
-  width: 80%
+  width: 80%;
 }
 
 .UpdateHorizontalDiv hr {
