@@ -1,17 +1,17 @@
-import { useState } from "react"
-import { useSetAtom } from "jotai";
-import { setDisplayStatus } from "../state/atoms/display";
-import { setMemoToLocalStorage } from "../libs/templates/utils";
-import { addMemo } from "../state/atoms/memo";
-import "./Form.css";
+import { useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { setDisplayStatus } from '@/state/atoms/display';
+import { setMemoToLocalStorage } from '@/libs/templates/utils';
+import { addMemo } from '@/state/atoms/memo';
+import './Form.css';
 
 export const Form = () => {
   const setMemo = useSetAtom(addMemo);
   const setDisplaySettings = useSetAtom(setDisplayStatus);
   const [inputState, setInputState] = useState({
-    name: "",
-    content: "",
-  })
+    name: '',
+    content: '',
+  });
   const [isInputTitle, setIsInputTitle] = useState(true);
   const [isInputContet, setIsInputContet] = useState(true);
   const handleOnChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +23,9 @@ export const Form = () => {
     const name = e.target.value;
     setInputState({
       ...inputState,
-      name
+      name,
     });
-  }
+  };
   const handleOnChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const content = e.target.value;
     if (content.length > 0) {
@@ -35,10 +35,10 @@ export const Form = () => {
     }
     setInputState({
       ...inputState,
-      content
+      content,
     });
-  }
-  const handleOnClickRegister = async() => {
+  };
+  const handleOnClickRegister = async () => {
     try {
       await setMemoToLocalStorage(inputState);
       setMemo({
@@ -46,20 +46,22 @@ export const Form = () => {
         content: inputState.content,
         onClick: async () => {
           await navigator.clipboard.writeText(inputState.content);
-        }
-      })
-      setDisplaySettings("list");
+        },
+      });
+      setDisplaySettings('list');
     } catch (e) {
       return;
     }
-  }
+  };
   const handleOnClickCancel = () => {
-    setDisplaySettings("list");
-  }
+    setDisplaySettings('list');
+  };
   return (
     <div className="FormContainer">
       <div className="FormNameInput">
-        <div><label>name</label></div>
+        <div>
+          <label>name</label>
+        </div>
         <input
           type="text"
           placeholder="title..."
@@ -68,7 +70,9 @@ export const Form = () => {
         />
       </div>
       <div className="FormContentInput">
-        <div><label>memo</label></div>
+        <div>
+          <label>memo</label>
+        </div>
         <textarea
           rows={5}
           placeholder="markdown here..."
@@ -80,16 +84,17 @@ export const Form = () => {
         <hr />
       </div>
       <div className="FormButtonContainer">
-        <button
-            className="FormCancelButton"
-            onClick={handleOnClickCancel}
-          >cancel</button>
+        <button className="FormCancelButton" onClick={handleOnClickCancel}>
+          cancel
+        </button>
         <button
           className="FormRegisterButton"
           onClick={handleOnClickRegister}
           disabled={isInputTitle || isInputContet}
-        ><span>register</span></button>
+        >
+          <span>register</span>
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};

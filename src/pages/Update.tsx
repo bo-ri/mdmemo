@@ -1,17 +1,13 @@
-import { useAtom, useSetAtom } from "jotai";
-import { memo, updateMemo } from "../state/atoms/memo";
-import { useState } from "react";
-import { display } from "../state/atoms/display";
-import { updateMemoToLocalStorage } from "../libs/templates/utils";
-import "./Update.css";
+import { useAtom, useSetAtom } from 'jotai';
+import { memo, updateMemo } from '@/state/atoms/memo';
+import { useState } from 'react';
+import { display } from '@/state/atoms/display';
+import { updateMemoToLocalStorage } from '@/libs/templates/utils';
+import './Update.css';
 
-export const Update = ({
-  index
-}: {
-  index: number;
-}) => {
+export const Update = ({ index }: { index: number }) => {
   const [memoList] = useAtom(memo);
-  const updateMemos = useSetAtom(updateMemo)
+  const updateMemos = useSetAtom(updateMemo);
   const [formData, setFormData] = useState(memoList[index - 1]);
   const setDisplaySettings = useSetAtom(display);
   const [isInputTitle, setIsInputTitle] = useState(false);
@@ -25,9 +21,9 @@ export const Update = ({
     }
     setFormData({
       ...formData,
-      name: e.target.value
-    })
-  }
+      name: e.target.value,
+    });
+  };
 
   const handleOnChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length > 0) {
@@ -37,31 +33,31 @@ export const Update = ({
     }
     setFormData({
       ...formData,
-      content: e.target.value
+      content: e.target.value,
     });
-  }
+  };
 
   const handleOnClickUpdate = async () => {
     const targetMemoList = memoList;
     targetMemoList[index - 1] = {
       ...formData,
-      onClick: async() => {
+      onClick: async () => {
         await navigator.clipboard.writeText(formData.content);
-      }
-    }
+      },
+    };
     try {
       // localStorageへ保存
       await updateMemoToLocalStorage(targetMemoList);
       // stateの更新
       await updateMemos(targetMemoList);
       setDisplaySettings({
-        status: "list",
-        selectedIndex: undefined
-      })
+        status: 'list',
+        selectedIndex: undefined,
+      });
     } catch (_) {
       return;
     }
-  }
+  };
 
   const handleOnClickDelete = async () => {
     const targetMemoList = memoList.filter((_, i) => i != index - 1);
@@ -71,27 +67,29 @@ export const Update = ({
       // stateの保存
       await updateMemos(targetMemoList);
       setDisplaySettings({
-        status: "list",
-        selectedIndex: undefined
+        status: 'list',
+        selectedIndex: undefined,
       });
     } catch (_) {
       return;
     }
-  }
+  };
 
   console.log(handleOnClickDelete);
 
   const handleOnClickCancel = () => {
     setDisplaySettings({
-      status: "list",
-      selectedIndex: undefined
+      status: 'list',
+      selectedIndex: undefined,
     });
-  }
+  };
 
-  return(
+  return (
     <>
       <div className="UpdateNameInput">
-        <div><label>name</label></div>
+        <div>
+          <label>name</label>
+        </div>
         <input
           type="text"
           value={formData.name}
@@ -100,7 +98,9 @@ export const Update = ({
         />
       </div>
       <div className="UpdateContentInput">
-        <div><label>memo</label></div>
+        <div>
+          <label>memo</label>
+        </div>
         <textarea
           rows={5}
           value={formData.content}
@@ -112,17 +112,20 @@ export const Update = ({
         <hr />
       </div>
       <div className="UpdateButtonContainer">
-        <button
-          onClick={handleOnClickDelete}
-          className="UpdateDeleteButton"
-        ><img src="/delete.png" className="UpdateDeleteImg" /></button>
-        <button onClick={handleOnClickCancel} className="UpdateCancelButton">cancel</button>
+        <button onClick={handleOnClickDelete} className="UpdateDeleteButton">
+          <img src="/delete.png" className="UpdateDeleteImg" />
+        </button>
+        <button onClick={handleOnClickCancel} className="UpdateCancelButton">
+          cancel
+        </button>
         <button
           onClick={handleOnClickUpdate}
           disabled={isInputTitle || isInputContet}
           className="UpdateRegisterButton"
-        >update</button>
+        >
+          update
+        </button>
       </div>
     </>
   );
-}
+};
