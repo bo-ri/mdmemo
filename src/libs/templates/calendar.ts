@@ -76,15 +76,21 @@ export const generateCalendar = async (date: Date = new Date()) => {
     // 日付をインクリメント
     dateIndex++;
   }
-  await navigator.clipboard.writeText(HEADER + baseMarkup);
+  return `${HEADER}${baseMarkup}`;
 };
 
-// FIXME:
-// generateCalendarを直接buttonのonClickから呼ぶとエラーになる
-// ここでラップすると動くから暫定処理
-export const call = async () => {
+/**
+ * wrapper
+ * generateCalendarはカレンダーを返して、
+ * ここでclipboardに貼り付ける
+ *
+ * @param date
+ * @returns
+ */
+export const call = async (date?: Date) => {
   try {
-    await generateCalendar();
+    const markup = await generateCalendar(date);
+    await navigator.clipboard.writeText(markup);
     return;
   } catch (e) {
     console.log(e);

@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { useAtom } from 'jotai';
 import { display } from '@/state/atoms/display';
-import { generateCalendar } from '@/libs/templates/calendar';
+import { call } from '@/libs/templates/calendar';
 import { generateDetail } from '@/libs/templates/detail';
 import { MemoState } from '@/state/atoms/memo';
 import './List.css';
@@ -21,7 +21,7 @@ export const List = ({ memoList }: { memoList: MemoState[] }) => {
   };
   const handleOnClick = async () => {
     const [y, m] = selectedDate.split('-');
-    await generateCalendar(new Date(`${y}-${m}-01`));
+    await call(new Date(`${y}-${m}-01`));
     setTimeout(() => {
       window.close();
     }, 100);
