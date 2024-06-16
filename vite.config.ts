@@ -6,11 +6,10 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  // plugins: [react()],
   test: {
     globals: true,
     root: 'src',
     environment: 'jsdom',
-    include: ['../tests/**/*.test.ts'],
+    include: ['../tests/**/*.test.{ts,tsx}'],
   },
 });
